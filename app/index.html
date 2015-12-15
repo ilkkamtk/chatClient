@@ -1,0 +1,182 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>chatClient</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+    
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+      
+    <div class="modal fade" tabindex="-1" role="dialog" id="replyModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Vastaa</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+                  <div class="form-group">
+                    <label for="message">Kirjoita viesti</label>
+                      <textarea id="message" name="message" class="form-control" rows="3"></textarea>
+                  </div>
+                  <input type="hidden" name="parent">
+                  <input type="hidden" name="uID">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+      
+      <div class="modal fade" tabindex="-1" role="dialog" id="messageModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Uusi viesti</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+                  <div class="form-group">
+                    <label for="message">Kirjoita viesti</label>
+                      <textarea id="message" name="message" class="form-control" rows="3"></textarea>
+                  </div>
+                  <input type="hidden" name="uID">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+      
+      <div class="modal fade" tabindex="-1" role="dialog" id="modifyModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Muokkaa viestiä</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+                  <div class="form-group">
+                    <label for="message">Kirjoita viesti</label>
+                      <textarea id="message" name="message" class="form-control" rows="3"></textarea>
+                  </div>
+                  <input type="hidden" name="mID">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+      
+      <div class="modal fade" tabindex="-1" role="dialog" id="imageModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Tallenna profiilikuva</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-inline" id="imageForm">
+                  <div class="form-group">
+                    <label class="sr-only" for="name">Valitse kuva</label>
+                    <input type="file" class="form-control" id="file" name="file" placeholder="Kuvatiedosto">
+                      <input type="hidden" name="uID">
+                      <input type="hidden" name="name">
+                  </div>
+                  <button type="submit" class="btn btn-default">Tallenna</button>
+                </form>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" id="profiili">
+                <h2>Kirjaudu</h2>
+                <form class="form-inline" id="loginForm">
+                  <div class="form-group">
+                    <label class="sr-only" for="name">Nimi</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nimi">
+                  </div>
+                  <button type="submit" class="btn btn-default">Kirjaudu</button>
+                </form>
+                
+                <h2>Luo tunnus</h2>
+                <form class="form-inline" id="signInForm">
+                  <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail3">Nimi</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nimi">
+                  </div>
+                  <button type="submit" class="btn btn-default">Luo tunnus</button>
+                </form>
+                
+            </div>
+            <div class="col-md-8">
+                <h2>Viestit</h2>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <ul class="media-list" id="messages"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    
+    <!-- build:js(.) scripts/plugins.js -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <!-- endbuild -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.js"></script>
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
+   
+  </body>
+</html>
